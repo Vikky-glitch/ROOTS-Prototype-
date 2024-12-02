@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+:root{
+    --green: #76a713;
+}
+*{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all .5s cubic-bezier(.37,1.14,.26,1.24);
+}
+*::selection{
+    background-color: var(--green);
+    color: #fff;
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+}
+section{
+    padding: 4% 6%;
+    background-image: url('assets/images/bg.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.btn{
+    height: 5rem;
+    width: 16rem;
+    background: none;
+    outline: none;
+    border: .2rem solid var(--green);
+    color: var(--green);
+    font-size: 2rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    position: relative;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+}
+.btn::before,
+.btn::after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--green);
+    z-index: -1;
+    transition: all .5s cubic-bezier(.37,1.14,.26,1.24);
+}
+.btn::before{
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+.btn:hover::before{
+    clip-path: polygon(0 0, 0 100%, 100% 0);
+}
+.btn::after{
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+}
+.btn:hover::after{
+    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+}
+.btn:hover{
+    color: #fff;
+}
+.heading{
+    text-align: center;
+    font-size: 4rem;
+    color: #555;
+    padding: 1rem;
+    padding-top: 5rem;
+}
+
+
+
+.post{
+    min-height: 100vh;
+}
+.post .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+}
+.post .box-container .box{
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(11px);
+    box-shadow: 0 20px 50px rgba(40, 113, 85, 0.4);
+    margin: 2rem 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.post .box-container .box img{
+    height: 30rem;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.post .box-container .box .content{
+    padding: 1rem;
+}
+.post .box-container .box .content span{
+    font-size: 1.5rem;
+    color: #666;
+}
+.post .box-container .box .content span i{
+    padding: 1rem 0;
+    color: crimson;
+    margin-right: .5rem;
+}
+.post .box-container .box .content h3{
+    margin: .5rem;
+    font-size: 2.4rem;
+    color: #333;
+}
+.post .box-container .box .content:hover h3{
+    text-decoration: underline;
+    color: crimson;
+}
+
+.post .box-container .box .content p{
+    color: #666;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,454 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: #089688;
+  --white-color: #483d3c;
+  --dark-color:#e6e6e6;
+  --dark-color-light: hsl(174, 100%, 30%);
+  --body-color: hsl(216, 96%, 98%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-color);
+  z-index: var(--z-fixed);
+  
+  box-shadow: 0px 5px 5px rgba(157, 157, 157, 0.31);
+  
+}
+
+.nav {
+  position: relative;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white-color);
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  transition: color .4s;
+}
+
+.nav__logo:hover {
+  color: var(--first-color);
+}
+
+.nav__toggle, 
+.nav__close {
+  display: flex;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1150px) {
+  .nav__menu {
+    position: fixed;
+    top: -120%;
+    left: 0;
+    background-color: var(--dark-color);
+    box-shadow: 0 8px 16px hsla(216, 24%, 8%, .2);
+    width: 100%;
+    padding-block: 4rem;
+    z-index: var(--z-fixed);
+    transition: top .4s;
+  }
+}
+
+.nav__list {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.5rem;
+}
+
+.nav__link {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  transition: color .4s;
+  font-size: 16px;
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+.nav__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  column-gap: .75rem;
+}
+
+/* Show menu */
+.show-menu {
+  top: 0;
+}
+
+/*=============== DROPDOWN ===============*/
+.dropdown {
+  position: relative;
+}
+
+.dropdown__profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: .25rem;
+  cursor: pointer;
+}
+
+.dropdown__image {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: var(--first-color);
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+}
+
+.dropdown__image img {
+  position: absolute;
+  width: 38px;
+  bottom: -1px;
+}
+
+.dropdown__names h3 {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.dropdown__names span {
+  display: block;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  text-align: right;
+}
+
+.dropdown__list {
+  position: absolute;
+  top: 4.5rem;
+  background-color: var(--dark-color);
+  box-shadow: 0 8px 16px hsla(216, 24%, 8%, .2);
+  display: grid;
+  row-gap: .25rem;
+  padding: 1rem 1.25rem;
+  border-radius: .25rem;
+  z-index: var(--z-tooltip);
+  transform: translateY(-.75rem);
+  opacity: 0;
+  transition: transform .4s, opacity .4s;
+  pointer-events: none;
+}
+
+.dropdown__link {
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  padding: .25rem 1.5rem .25rem .5rem;
+  border-radius: .25rem;
+  transition: background-color .4s;
+}
+
+.dropdown__link i {
+  font-size: 1rem;
+}
+
+.dropdown__link span {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+}
+
+.dropdown__link:hover {
+  background-color: var(--dark-color-light);
+}
+
+.dropdown__list::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: var(--dark-color);
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  rotate: -45deg;
+}
+
+/* Show dropdown */
+.show-dropdown .dropdown__list {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: initial;
+}
+
+
+.coming-soon {
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(to right, #81c784, #388e3c); /* Green gradient background */
+  border-radius: 8px;
+  margin: 20px 0;
+  color: white; /* Text color */
+}
+
+.message h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.message p {
+  font-size: 18px;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .container {
+    margin-inline: 1rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1150px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    column-gap: 4rem;
+  }
+  .nav__toggle, 
+  .nav__close {
+    display: none;
+  }
+  .nav__list {
+    flex-direction: row;
+    column-gap: 3rem;
+  }
+  .nav__menu {
+    margin-left: auto;
+  }
+
+  .dropdown__profile {
+    column-gap: 1rem;
+  }
+  .dropdown__list {
+    top: 5.5rem;
+  }
+}
+
+.weather img{
+  width: 100%;
+  margin-top: 2px;
+}
+
+.divider{
+  height: 9px;
+  width: 100vw;
+  background-color: rgba(105, 23, 23, 0.796);
+}
+
+.comingsoon{
+  width: 90vw;
+  margin: 15% auto;
+}
+
+.comingsoon h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+  
+  .emerald {
+    background-color: #016c117c;
+    background-image:url('assets/images/back.jpg');
+  }
+  
+
+
+.ach2{
+  font-size: 1.3vw;
+  padding: 3px 30px 0px 30px; font-family:Calibri; color: #ffffff; text-align: center;
+  
+}
+.noticetext{
+  font-size: 0.9vw;
+}
+
+.ach1{ color:#000000; font-family:'Poppins', sans-serif; font-weight:bold; background-color: #ffffff; padding:22px; text-align: center;font-size: 3vw;}
+  
+.ach {
+    padding: 10px 20px;
+    background-color: #ffffff; 
+    text-align: center;
+    color: #000000;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family:'Poppins', sans-serif; font-weight:bold; 
+    padding: 10px; text-align: center;font-size: 1vw; width: 50%; margin-left: auto; margin-right: auto;
+}
+
+.ach:hover {
+    color:#000000;
+    background-color: #f1c40f; 
+    cursor: pointer;
+}
+#tr{
+    padding:5px; text-align:center;
+}
+#marq{
+    margin-top: 0px; height:20vw; margin-top:0px; z-index:1; text-align:justify;
+}
+h3{
+    font-size: 2vw;font-family: 'Poppins', sans-serif; font-weight: 900;color:#f1c40f;
+}
+h4{
+    font-size:1.3vw;
+}
+
+#yellow_h4{
+    color:#f1c40f; 
+    padding-bottom: 20px;
+}
+
+#ecopledge{
+    background-color:#00000090; height:500px;border:1px solid #ffffff 
+}
+
+@media all and (max-width: 968px) {
+    
+    #marq{
+        margin-top: 0px; height:50vw; margin-top:0px; z-index:1; text-align:justify;
+    }
+    
+  .noticetext{
+    font-size: 2.9vw;
+  }
+  #designer{
+    font-size: 2.7vw;
+    text-align: center;
+  }
+  .ach{
+    font-size: 2vw;
+    margin-top: 4%;
+  }
+  .ach2{
+    font-size: 3.5vw;
+
+  }
+  .ach1{
+    font-size: 7vw;
+  }
+  
+  h3{
+    font-size: 5vw;
+
+  }
+  
+  h4{
+    font-size: 4vw;
+    
+  }
+  #yellow_h4{
+    color:#f1c40f; 
+    padding-bottom: 5px;
+}
+  
+p{
+  font-size: 30px;
+  font-weight: 500;
+}
+#ecopledge{
+    background-color:#00000090; height:fit-content;border:1px solid #ffffff; padding-bottom: 5%;margin-top: 5%;
+}
+}
